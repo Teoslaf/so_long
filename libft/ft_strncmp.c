@@ -1,39 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse.c                                            :+:      :+:    :+:   */
+/*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ttaneski <ttaneski@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/24 13:31:29 by ttaneski          #+#    #+#             */
-/*   Updated: 2023/08/01 16:56:44 by ttaneski         ###   ########.fr       */
+/*   Created: 2022/12/02 14:54:44 by ttaneski          #+#    #+#             */
+/*   Updated: 2022/12/12 12:37:14 by ttaneski         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "libft.h"
 
-size_t	count_rupees(t_game *game)
+int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
-	size_t	count;
-	size_t	y;
-	size_t	x;
+	size_t	i;
 
-	y = 0;
-	count = 0;
-	if (game == NULL || game->grid == NULL)
-	{
-		return (count);
-	}
-	while (y < game->height)
-	{
-		x = 0;
-		while (x < ft_strlen(game->grid[y]) - 1)
-		{
-			if (game->grid[y][x] == 'C')
-				count++;
-			x++;
-		}
-		y++;
-	}
-	return (count);
+	i = 0;
+	if (n == 0)
+		return (0);
+	while (i < n - 1 && s1[i] != '\0' && s2[i] != '\0' && s1[i] == s2[i])
+		i++;
+	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
 }
+
+/* int main(void)
+{
+	char s1[] = "mjau123u";
+	char s2[] = "mjauu";
+	if (ft_strncmp(s1, s2, 4) == 0)
+	{
+		printf("same\n");
+	}
+	else
+	{
+		printf("not same\n");
+	}
+}
+*/

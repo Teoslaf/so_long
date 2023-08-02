@@ -1,39 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse.c                                            :+:      :+:    :+:   */
+/*   check_game.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ttaneski <ttaneski@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/24 13:31:29 by ttaneski          #+#    #+#             */
-/*   Updated: 2023/08/01 16:56:44 by ttaneski         ###   ########.fr       */
+/*   Created: 2023/07/31 14:59:08 by ttaneski          #+#    #+#             */
+/*   Updated: 2023/08/01 18:00:01 by ttaneski         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-size_t	count_rupees(t_game *game)
+void	check_game(t_game *game)
 {
-	size_t	count;
-	size_t	y;
-	size_t	x;
-
-	y = 0;
-	count = 0;
-	if (game == NULL || game->grid == NULL)
+	print_moves(game);
+	if (game->collected == game->rupees)
 	{
-		return (count);
+		if (mlx_image_to_window(game->mlx, game->img->exit_open, game->exit_x
+				* 64, game->exit_y * 64) < 0)
+			ft_putstr_fd("pic prob", 1);
+		game->grid[game->exit_y][game->exit_x] = '0';
 	}
-	while (y < game->height)
+	if (game->link_y == game->exit_y && game->link_x == game->exit_x)
 	{
-		x = 0;
-		while (x < ft_strlen(game->grid[y]) - 1)
-		{
-			if (game->grid[y][x] == 'C')
-				count++;
-			x++;
-		}
-		y++;
+		mlx_close_window(game->mlx);
+		ft_putstr_fd("gg\n", 1);
 	}
-	return (count);
 }

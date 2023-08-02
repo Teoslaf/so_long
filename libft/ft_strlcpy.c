@@ -1,39 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse.c                                            :+:      :+:    :+:   */
+/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ttaneski <ttaneski@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/24 13:31:29 by ttaneski          #+#    #+#             */
-/*   Updated: 2023/08/01 16:56:44 by ttaneski         ###   ########.fr       */
+/*   Created: 2022/12/02 11:18:27 by ttaneski          #+#    #+#             */
+/*   Updated: 2022/12/13 10:40:06 by ttaneski         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "libft.h"
 
-size_t	count_rupees(t_game *game)
+size_t	ft_strlcpy(char *dst, const char *src, size_t size)
 {
-	size_t	count;
-	size_t	y;
-	size_t	x;
+	size_t	i;
 
-	y = 0;
-	count = 0;
-	if (game == NULL || game->grid == NULL)
+	i = 0;
+	if (size > 0)
 	{
-		return (count);
-	}
-	while (y < game->height)
-	{
-		x = 0;
-		while (x < ft_strlen(game->grid[y]) - 1)
+		while (src[i] && i < (size - 1))
 		{
-			if (game->grid[y][x] == 'C')
-				count++;
-			x++;
+			dst[i] = src[i];
+			i++;
 		}
-		y++;
+		dst[i] = '\0';
 	}
-	return (count);
+	while (src[i])
+		i++;
+	return (i);
 }
+
+/* int main()
+{
+	char dest[] = "1234";
+	char src[] = "1234";
+	printf("%s %s \n", dest, src);
+	ft_strlcpy(dest, src, 3);
+	printf("%s %s \n", dest, src);
+} */

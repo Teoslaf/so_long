@@ -6,7 +6,7 @@
 /*   By: ttaneski <ttaneski@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 17:03:23 by ttaneski          #+#    #+#             */
-/*   Updated: 2023/07/12 14:26:22 by ttaneski         ###   ########.fr       */
+/*   Updated: 2023/08/01 16:28:46 by ttaneski         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ char	*ft_new_left_str(char *left_str)
 	int		i;
 	int		j;
 	char	*str;
+
 	i = 0;
 	while (left_str[i] && left_str[i] != '\n')
 		i++;

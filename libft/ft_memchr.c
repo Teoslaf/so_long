@@ -1,39 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse.c                                            :+:      :+:    :+:   */
+/*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ttaneski <ttaneski@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/24 13:31:29 by ttaneski          #+#    #+#             */
-/*   Updated: 2023/08/01 16:56:44 by ttaneski         ###   ########.fr       */
+/*   Created: 2022/12/05 11:17:06 by ttaneski          #+#    #+#             */
+/*   Updated: 2022/12/08 14:30:24 by ttaneski         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "libft.h"
 
-size_t	count_rupees(t_game *game)
+void	*ft_memchr(const void *s, int c, size_t n)
 {
-	size_t	count;
-	size_t	y;
-	size_t	x;
+	const char	*str;
 
-	y = 0;
-	count = 0;
-	if (game == NULL || game->grid == NULL)
+	str = (const char *)s;
+	while (n > 0)
 	{
-		return (count);
-	}
-	while (y < game->height)
-	{
-		x = 0;
-		while (x < ft_strlen(game->grid[y]) - 1)
+		if (*str == (char)c)
 		{
-			if (game->grid[y][x] == 'C')
-				count++;
-			x++;
+			return ((void *)str);
 		}
-		y++;
+		str++;
+		n--;
 	}
-	return (count);
+	return (NULL);
 }
+
+/* int main()
+{
+	const char str[] = "123456789";
+	const char ch = '7';
+	char *ret;
+
+	ret = ft_memchr(str, ch, 8);
+
+	printf("%s\n", ret);
+
+	return (0);
+} */

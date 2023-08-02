@@ -1,33 +1,46 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ttaneski <ttaneski@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/05 14:54:38 by ttaneski          #+#    #+#             */
-/*   Updated: 2023/08/01 13:54:04 by ttaneski         ###   ########.fr       */
+/*   Created: 2022/12/02 16:45:09 by ttaneski          #+#    #+#             */
+/*   Updated: 2023/08/01 17:32:00 by ttaneski         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strdup(const char *s1)
+int	ft_atoi(const char *str)
 {
-	char	*str;
-	int		len;
+	int	i;
+	int	sign;
+	int	res;
 
-	len = ft_strlen(s1) + 1;
-	str = (char *)malloc(len);
-	if (!str)
-		return (0);
-	ft_memcpy(str, s1, len);
-	return (str);
+	i = 0;
+	sign = 1;
+	res = 0;
+	while (str[i] == 32 || (str[i] >= 9 && str[i] <= 13))
+		i++;
+	if (str[i] == '+')
+		i++;
+	else if (str[i] == '-')
+	{
+		sign = -1;
+		i++;
+	}
+	while (str[i] != '\0' && (str[i] >= '0' && str[i] <= '9'))
+	{
+		res *= 10;
+		res += str[i] - '0';
+		i++;
+	}
+	return (res * sign);
 }
 
 /* int main()
 {
-	const char *str = "asd";
-	char *bla = ft_strdup(str);
-	printf("%s\n", bla);
+	char str[] = "		  234a567";
+	printf("%d \n", ft_atoi(str));
 } */
